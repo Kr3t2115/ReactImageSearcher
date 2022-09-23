@@ -6,10 +6,12 @@ import List from "./components/List";
 function App() {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [imagePerPage, setImagePerPage] = useState(4);
+  const [imagePerPage, setImagePerPage] = useState(8);
   const [allData, setAllData] = useState([]);
+  const [loader, setLoader] = useState("start");
 
   const eventHandler = (e) => {
+    setLoader("search");
     setQuery(e.target.value);
   };
 
@@ -24,6 +26,11 @@ function App() {
       }
       const parsedData = await request.json();
 
+      if (parsedData.hits.length === 0) {
+        setLoader("noresult");
+        return;
+      }
+
       setAllData([]);
 
       await parsedData.hits.forEach((element) => {
@@ -35,22 +42,18 @@ function App() {
     } catch (err) {
       console.log(err);
     }
+
+    setLoader("result");
   };
 
   useEffect(() => {
     document.title = "You searched: " + query;
 
-    const loading = document.getElementById("loading");
-
-    loading.classList.add("active");
-
     const timeout = setTimeout(() => {
       if (query === "") {
-        loading.classList.remove("active");
+        setLoader("start");
         return;
       } else {
-        loading.classList.remove("active");
-
         sendRequest(query);
       }
     }, 3000);
@@ -60,13 +63,37 @@ function App() {
     };
   }, [query]);
 
-  useEffect(() => {}, [allData]);
-
   useEffect(() => {
     if (window.innerWidth > 700 && window.innerWidth < 1200) {
       setImagePerPage(3);
     }
   }, [imagePerPage]);
+
+  useEffect(() => {
+    const loading = document.getElementById("loading");
+
+    const result = document.getElementById("result");
+    if (loader === "start") {
+      loading.classList.remove("active");
+      result.innerText = "Type something...";
+    }
+    if (loader === "search") {
+      loading.classList.add("active");
+      result.innerText = "";
+    }
+    if (loader === "noresult") {
+      loading.classList.remove("active");
+      result.innerText = "No result found";
+    }
+    if (loader === "result") {
+      loading.classList.remove("active");
+      result.innerText = "";
+    }
+
+    console.log(loader);
+  }, [loader]);
+
+  useEffect(() => {}, [allData]);
 
   const lastPostIndex = currentPage * imagePerPage;
   const firstPostIndex = lastPostIndex - imagePerPage;
@@ -83,6 +110,8 @@ function App() {
         <br></br>
         <div className="loader-circle-6" id="loading"></div>
       </div>
+
+      <h1 id="result"></h1>
 
       <List data={currentPosts}></List>
 
