@@ -25,3 +25,10 @@ img:not(:hover) {
   transition: 1s all ease-in-out;
   transform: scale(1);
 }
+
+@media only screen and (max-width: 600px) {
+  .List-main {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+}
