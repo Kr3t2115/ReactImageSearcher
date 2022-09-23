@@ -39,7 +39,7 @@ footer {
 }
 footer ul li {
   display: inline-block;
-  margin: 20px;
+  margin: 10px;
 }
 @keyframes loader-circle-6-spin {
   0% {
