@@ -76,6 +76,7 @@ function App() {
     if (loader === "start") {
       loading.classList.remove("active");
       result.innerText = "Type something...";
+      setAllData([]);
     }
     if (loader === "search") {
       loading.classList.add("active");
