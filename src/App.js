@@ -115,14 +115,14 @@ function App() {
 
       <h1 id="result"></h1>
 
-      <List data={currentPosts}></List>
-
       <Pagination
         dataLength={allData.length}
         imagePerPage={imagePerPage}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       ></Pagination>
+
+      <List data={currentPosts}></List>
     </div>
   );
 }
