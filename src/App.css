@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+.App-header {
+  background-color: #222;
+  height: auto;
+  padding: 20px;
+  color: white;
+}
+.App-header input {
+  width: 300px;
+  height: 50px;
+  font-size: 25px;
+}
+
+.loader-circle-6 {
+  animation: loader-circle-6-spin 1s linear infinite;
+  border: solid 5px #bbb;
+  border-top: solid 5px transparent;
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  display: none;
+}
+
+.active {
+  display: inline-block;
+}
+@keyframes loader-circle-6-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
