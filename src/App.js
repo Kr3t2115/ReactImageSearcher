@@ -101,11 +101,24 @@ function App() {
   const firstPostIndex = lastPostIndex - imagePerPage;
   const currentPosts = allData.slice(firstPostIndex, lastPostIndex);
 
+  const carOffer = [
+    "Audi",
+    "Mercedes-benz",
+    "Bmw",
+    "Volkswagen",
+    "Fiat",
+    "Porsche",
+    "Ferrari",
+    "Lamborghini",
+    "Lotus",
+    "Pagani",
+  ];
   return (
     <div className="App">
       <div className="App-header">
         <h2>Search image from pixabay</h2>
         <input
+          id="imageInput"
           style={{ margin: "20px" }}
           onChange={(event) => eventHandler(event)}
         ></input>
@@ -123,6 +136,25 @@ function App() {
       ></Pagination>
 
       <List data={currentPosts}></List>
+
+      <footer>
+        <ul>
+          {carOffer.map((car) => {
+            return (
+              <li
+                onClick={(e) => {
+                  setQuery(e.target.textContent);
+                  document.getElementById("imageInput").value =
+                    e.target.textContent;
+                  setLoader("search");
+                }}
+              >
+                {car}
+              </li>
+            );
+          })}
+        </ul>
+      </footer>
     </div>
   );
 }

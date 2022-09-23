@@ -8,7 +8,7 @@
   color: white;
 }
 .App-header input {
-  width: 300px;
+  width: min(300px, 90%);
   height: 50px;
   font-size: 25px;
 }
@@ -25,6 +25,21 @@
 
 .active {
   display: inline-block;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  clear: both;
+  background-color: #222;
+  color: white;
+  text-align: center;
+}
+footer ul li {
+  display: inline-block;
+  margin: 20px;
 }
 @keyframes loader-circle-6-spin {
   0% {

@@ -16,6 +16,7 @@ img {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 30px;
+  margin-bottom: 20vh;
 }
 img:hover {
   transition: 1s all ease-in-out;
