@@ -84,6 +84,7 @@ function App() {
     if (loader === "noresult") {
       loading.classList.remove("active");
       result.innerText = "No result found";
+      setAllData([]);
     }
     if (loader === "result") {
       loading.classList.remove("active");
